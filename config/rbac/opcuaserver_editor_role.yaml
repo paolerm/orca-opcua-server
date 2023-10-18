@@ -1,0 +1,31 @@
+# permissions for end users to edit opcuaservers.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: opcuaserver-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: orca-opcua-server
+    app.kubernetes.io/part-of: orca-opcua-server
+    app.kubernetes.io/managed-by: kustomize
+  name: opcuaserver-editor-role
+rules:
+- apiGroups:
+  - orca.paermini.com
+  resources:
+  - opcuaservers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - orca.paermini.com
+  resources:
+  - opcuaservers/status
+  verbs:
+  - get

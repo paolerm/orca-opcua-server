@@ -1,0 +1,12 @@
+apiVersion: orca.paermini.com/v1beta1
+kind: OpcuaServer
+metadata:
+  labels:
+    app.kubernetes.io/name: opcuaserver
+    app.kubernetes.io/instance: opcuaserver-sample
+    app.kubernetes.io/part-of: orca-opcua-server
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: orca-opcua-server
+  name: opcuaserver-sample
+spec:
+  # TODO(user): Add fields here
