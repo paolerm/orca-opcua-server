@@ -41,6 +41,9 @@ spec:
               assetUpdateRatePerSecond:
                 description: Asset update rate per second
                 type: integer
+              changeRateMs:
+                description: Rate in MS to change nodes
+                type: integer
               dockerImage:
                 description: Docker image ID to use (if not defined, uses default)
                 properties:
@@ -52,10 +55,16 @@ spec:
                 - prefix
                 - tag
                 type: object
+              logLevel:
+                description: Log level
+                type: string
               namePrefix:
                 type: string
-              publishingIntervalMs:
-                description: Publishing interval in MS
+              opcuaServerLogLevel:
+                description: OPCUA server log level
+                type: string
+              samplingInterval:
+                description: Node sampling interval in MS
                 type: integer
               serverCount:
                 description: Number of OPCUA servers to deploy
@@ -66,8 +75,9 @@ spec:
             required:
             - assetPerServer
             - assetUpdateRatePerSecond
+            - changeRateMs
             - namePrefix
-            - publishingIntervalMs
+            - samplingInterval
             - serverCount
             - tagCount
             type: object

@@ -36,10 +36,16 @@ type OpcuaServerSpec struct {
 	TagCount int `json:"tagCount"`
 	// Asset update rate per second
 	AssetUpdateRatePerSecond int `json:"assetUpdateRatePerSecond"`
-	// Publishing interval in MS
-	PublishingIntervalMs int `json:"publishingIntervalMs"`
+	// Rate in MS to change nodes
+	ChangeRateMs int `json:"changeRateMs"`
+	// Node sampling interval in MS
+	SamplingInterval int `json:"samplingInterval"`
 	// Docker image ID to use (if not defined, uses default)
 	DockerImage DockerImage `json:"dockerImage,omitempty"`
+	// Log level
+	LogLevel string `json:"logLevel,omitempty"`
+	// OPCUA server log level
+	OpcuaServerLogLevel string `json:"opcuaServerLogLevel,omitempty"`
 }
 
 // OpcuaServerStatus defines the observed state of OpcuaServer

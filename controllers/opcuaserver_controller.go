@@ -91,6 +91,7 @@ func (r *OpcuaServerReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 
 	opcuaNamePrefix := opcuaServer.Spec.NamePrefix
 	numberOfServers := opcuaServer.Spec.ServerCount
+	opcuaServerImage := opcuaServer.Spec.DockerImage.Prefix + ":" + opcuaServer.Spec.DockerImage.Tag
 
 	logger.Info("Getting all statefulSet under namespace " + req.NamespacedName.Namespace + " and assigned to simulation " + opcuaNamePrefix + "...")
 	statefulSetList := &appsv1.StatefulSetList{}
@@ -145,7 +146,7 @@ func (r *OpcuaServerReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 						Containers: []apiv1.Container{
 							{
 								Name:            opcuaNamePrefix,
-								Image:           "mcr.microsoft.com/iotedge/opc-plc:latest", // TODO: custom image
+								Image:           opcuaServerImage,
 								ImagePullPolicy: "Always",
 								Args: []string{
 									"--pn=50000",
@@ -154,12 +155,12 @@ func (r *OpcuaServerReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 									"--alm",
 									"--ses",
 									"--fastnodes=" + strconv.Itoa(opcuaServer.Spec.TagCount),
-									// "--veryfastrate=" + strconv.Itoa(opcuaServerTest.Spec.PublishingIntervalMs),
-									// "--fastnodesamplinginterval={simulationPod.SamplingIntervalMs}",
-									"--fasttype=uint", // TODO telemetry type based on telemetry type?
+									"--veryfastrate=" + strconv.Itoa(opcuaServer.Spec.ChangeRateMs),
+									"--fastnodesamplinginterval=" + strconv.Itoa(opcuaServer.Spec.SamplingInterval),
+									"--fasttype=uint",
 									"--fasttyperandomization=True",
-									"--ll=debug",  // set log level to debug, this level applies to opc plc code not opc ua stack
-									"--llo=debug", // set opc ua server log level to debug, this level applies to opc ua stack
+									"--ll=" + opcuaServer.Spec.LogLevel,  // set log level to debug, this level applies to opc plc code not opc ua stack
+									"--llo=" + opcuaServer.Spec.OpcuaServerLogLevel, // set opc ua server log level to debug, this level applies to opc ua stack
 									"--la",        // log to azure data explorer
 								},
 								Ports: []apiv1.ContainerPort{
