@@ -47,11 +47,14 @@ spec:
               dockerImage:
                 description: Docker image ID to use (if not defined, uses default)
                 properties:
+                  imageName:
+                    type: string
                   prefix:
                     type: string
                   tag:
                     type: string
                 required:
+                - imageName
                 - prefix
                 - tag
                 type: object
@@ -63,7 +66,7 @@ spec:
               opcuaServerLogLevel:
                 description: OPCUA server log level
                 type: string
-              samplingInterval:
+              samplingIntervalMs:
                 description: Node sampling interval in MS
                 type: integer
               serverCount:

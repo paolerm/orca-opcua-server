@@ -91,7 +91,7 @@ func (r *OpcuaServerReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 
 	opcuaNamePrefix := opcuaServer.Spec.NamePrefix
 	numberOfServers := opcuaServer.Spec.ServerCount
-	opcuaServerImage := opcuaServer.Spec.DockerImage.Prefix + ":" + opcuaServer.Spec.DockerImage.Tag
+	opcuaServerImage := opcuaServer.Spec.DockerImage.Prefix + "\\" + opcuaServer.Spec.DockerImage.ImageName + ":" + opcuaServer.Spec.DockerImage.Tag
 
 	logger.Info("Getting all statefulSet under namespace " + req.NamespacedName.Namespace + " and assigned to simulation " + opcuaNamePrefix + "...")
 	statefulSetList := &appsv1.StatefulSetList{}
@@ -156,7 +156,7 @@ func (r *OpcuaServerReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 									"--ses",
 									"--fastnodes=" + strconv.Itoa(opcuaServer.Spec.TagCount),
 									"--veryfastrate=" + strconv.Itoa(opcuaServer.Spec.ChangeRateMs),
-									"--fastnodesamplinginterval=" + strconv.Itoa(opcuaServer.Spec.SamplingInterval),
+									"--fastnodesamplinginterval=" + strconv.Itoa(opcuaServer.Spec.SamplingIntervalMs),
 									"--fasttype=uint",
 									"--fasttyperandomization=True",
 									"--ll=" + opcuaServer.Spec.LogLevel,  // set log level to debug, this level applies to opc plc code not opc ua stack

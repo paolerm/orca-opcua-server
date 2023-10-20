@@ -22,6 +22,7 @@ import (
 
 type DockerImage struct {
 	Prefix string `json:"prefix"`
+	ImageName string `json:"imageName"`
 	Tag    string `json:"tag"`
 }
 
@@ -39,7 +40,7 @@ type OpcuaServerSpec struct {
 	// Rate in MS to change nodes
 	ChangeRateMs int `json:"changeRateMs"`
 	// Node sampling interval in MS
-	SamplingInterval int `json:"samplingInterval"`
+	SamplingIntervalMs int `json:"samplingInterval"`
 	// Docker image ID to use (if not defined, uses default)
 	DockerImage DockerImage `json:"dockerImage,omitempty"`
 	// Log level
