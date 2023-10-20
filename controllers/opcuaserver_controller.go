@@ -161,7 +161,7 @@ func (r *OpcuaServerReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 									"--fasttyperandomization=True",
 									"--ll=" + opcuaServer.Spec.LogLevel,  // set log level to debug, this level applies to opc plc code not opc ua stack
 									"--llo=" + opcuaServer.Spec.OpcuaServerLogLevel, // set opc ua server log level to debug, this level applies to opc ua stack
-									"--la",        // log to azure data explorer
+									// "--la",        // TODO log to azure data explorer
 								},
 								Ports: []apiv1.ContainerPort{
 									{
@@ -174,7 +174,7 @@ func (r *OpcuaServerReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 										Protocol:      "TCP",
 									},
 								},
-								Env: []apiv1.EnvVar{}, // TODO
+								// Env: []apiv1.EnvVar{}, TODO needed to implement ADX logs
 							},
 						},
 					},
