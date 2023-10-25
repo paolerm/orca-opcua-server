@@ -21,9 +21,9 @@ import (
 )
 
 type DockerImage struct {
-	Prefix string `json:"prefix"`
+	Prefix    string `json:"prefix"`
 	ImageName string `json:"imageName"`
-	Tag    string `json:"tag"`
+	Tag       string `json:"tag"`
 }
 
 // OpcuaServerSpec defines the desired state of OpcuaServer
