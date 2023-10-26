@@ -58,6 +58,9 @@ spec:
                 - prefix
                 - tag
                 type: object
+              id:
+                description: Id
+                type: string
               logLevel:
                 description: Log level
                 type: string
@@ -68,6 +71,7 @@ spec:
                 description: Node sampling interval in MS
                 type: integer
               serverCount:
+                description: Number of Servers
                 type: integer
               tagCount:
                 description: Number of tags for each server
@@ -76,6 +80,7 @@ spec:
             - assetPerServer
             - assetUpdateRatePerSecond
             - changeRateMs
+            - id
             - samplingInterval
             - serverCount
             - tagCount
