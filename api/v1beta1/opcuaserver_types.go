@@ -28,8 +28,6 @@ type DockerImage struct {
 
 // OpcuaServerSpec defines the desired state of OpcuaServer
 type OpcuaServerSpec struct {
-	NamePrefix string `json:"namePrefix"`
-	// Number of OPCUA servers to deploy
 	ServerCount int `json:"serverCount"`
 	// Number of Assets for each server
 	AssetPerServer int `json:"assetPerServer"`

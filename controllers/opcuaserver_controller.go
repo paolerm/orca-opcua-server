@@ -89,7 +89,7 @@ func (r *OpcuaServerReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 		return ctrl.Result{}, nil
 	}
 
-	opcuaNamePrefix := opcuaServer.Spec.NamePrefix
+	opcuaNamePrefix := opcuaServer.ObjectMeta.Name
 	numberOfServers := opcuaServer.Spec.ServerCount
 	opcuaServerImage := opcuaServer.Spec.DockerImage.Prefix + "\\" + opcuaServer.Spec.DockerImage.ImageName + ":" + opcuaServer.Spec.DockerImage.Tag
 
@@ -304,7 +304,7 @@ func (r *OpcuaServerReconciler) SetupWithManager(mgr ctrl.Manager) error {
 
 func (r *OpcuaServerReconciler) finalizeOpcuaServer(ctx context.Context, req ctrl.Request, opcuaServer *orcav1beta1.OpcuaServer) error {
 	logger := log.FromContext(ctx)
-	opcuaServerNamePrefix := opcuaServer.Spec.NamePrefix
+	opcuaServerNamePrefix := opcuaServer.ObjectMeta.Name
 
 	statefulSetList := &appsv1.StatefulSetList{}
 	opts := []client.ListOption{

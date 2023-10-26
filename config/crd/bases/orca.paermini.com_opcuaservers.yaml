@@ -61,8 +61,6 @@ spec:
               logLevel:
                 description: Log level
                 type: string
-              namePrefix:
-                type: string
               opcuaServerLogLevel:
                 description: OPCUA server log level
                 type: string
@@ -70,7 +68,6 @@ spec:
                 description: Node sampling interval in MS
                 type: integer
               serverCount:
-                description: Number of OPCUA servers to deploy
                 type: integer
               tagCount:
                 description: Number of tags for each server
@@ -79,7 +76,6 @@ spec:
             - assetPerServer
             - assetUpdateRatePerSecond
             - changeRateMs
-            - namePrefix
             - samplingInterval
             - serverCount
             - tagCount
