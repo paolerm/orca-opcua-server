@@ -20,12 +20,6 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-type DockerImage struct {
-	Prefix    string `json:"prefix"`
-	ImageName string `json:"imageName"`
-	Tag       string `json:"tag"`
-}
-
 // OpcuaServerSpec defines the desired state of OpcuaServer
 type OpcuaServerSpec struct {
 	// Id
@@ -41,9 +35,9 @@ type OpcuaServerSpec struct {
 	// Rate in MS to change nodes
 	ChangeRateMs int `json:"changeRateMs"`
 	// Node sampling interval in MS
-	SamplingIntervalMs int `json:"samplingInterval"`
+	SamplingIntervalMs int `json:"samplingIntervalMs"`
 	// Docker image ID to use (if not defined, uses default)
-	DockerImage DockerImage `json:"dockerImage,omitempty"`
+	DockerImageId string `json:"dockerImageId,omitempty"`
 	// Log level
 	LogLevel string `json:"logLevel,omitempty"`
 	// OPCUA server log level

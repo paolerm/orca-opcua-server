@@ -91,7 +91,6 @@ func (r *OpcuaServerReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 
 	opcuaNamePrefix := opcuaServer.Spec.Id
 	numberOfServers := opcuaServer.Spec.ServerCount
-	opcuaServerImage := opcuaServer.Spec.DockerImage.Prefix + "\\" + opcuaServer.Spec.DockerImage.ImageName + ":" + opcuaServer.Spec.DockerImage.Tag
 
 	logger.Info("Getting all statefulSet under namespace " + req.NamespacedName.Namespace + " and assigned to simulation " + opcuaNamePrefix + "...")
 	statefulSetList := &appsv1.StatefulSetList{}
@@ -146,7 +145,7 @@ func (r *OpcuaServerReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 						Containers: []apiv1.Container{
 							{
 								Name:            opcuaNamePrefix,
-								Image:           opcuaServerImage,
+								Image:           opcuaServer.Spec.DockerImageId,
 								ImagePullPolicy: "Always",
 								Args: []string{
 									"--pn=50000",
