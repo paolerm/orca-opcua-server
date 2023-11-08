@@ -243,6 +243,10 @@ func (r *OpcuaServerReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 		},
 	}
 
+	if opcuaServer.Spec.ServiceIp != "" {
+		loadBalancer.Spec.LoadBalancerIP = opcuaServer.Spec.ServiceIp
+	}
+
 	logger.Info("Getting load balancer under namespace " + req.NamespacedName.Namespace + " and name " + opcuaNamePrefix + "...")
 	existingLoadBalancer := &apiv1.Service{}
 	lbName := types.NamespacedName{

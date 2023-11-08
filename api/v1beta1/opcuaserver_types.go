@@ -42,6 +42,8 @@ type OpcuaServerSpec struct {
 	LogLevel string `json:"logLevel,omitempty"`
 	// OPCUA server log level
 	OpcuaServerLogLevel string `json:"opcuaServerLogLevel,omitempty"`
+	// ServiceIp (if you have to use a static IP address to expose OPCUA server discovery URL)
+	ServiceIp string `json:"serviceIp,omitempty"`
 }
 
 // OpcuaServerStatus defines the observed state of OpcuaServer

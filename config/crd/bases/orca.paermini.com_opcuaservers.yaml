@@ -62,6 +62,10 @@ spec:
               serverCount:
                 description: Number of Servers
                 type: integer
+              serviceIp:
+                description: ServiceIp (if you have to use a static IP address to
+                  expose OPCUA server discovery URL)
+                type: string
               tagCount:
                 description: Number of tags for each server
                 type: integer
