@@ -158,6 +158,7 @@ func (r *OpcuaServerReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 									"--fastnodesamplinginterval=" + strconv.Itoa(opcuaServer.Spec.SamplingIntervalMs),
 									"--fasttype=uint",
 									"--fasttyperandomization=True",
+									"--maxsessioncount=" + strconv.Itoa(opcuaServer.Spec.MaxSessionCount),
 									"--ll=" + opcuaServer.Spec.LogLevel,             // set log level to debug, this level applies to opc plc code not opc ua stack
 									"--llo=" + opcuaServer.Spec.OpcuaServerLogLevel, // set opc ua server log level to debug, this level applies to opc ua stack
 									// "--la",        // TODO log to azure data explorer

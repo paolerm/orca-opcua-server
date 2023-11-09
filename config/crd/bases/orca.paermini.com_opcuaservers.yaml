@@ -38,9 +38,6 @@ spec:
               assetPerServer:
                 description: Number of Assets for each server
                 type: integer
-              assetUpdateRatePerSecond:
-                description: Asset update rate per second
-                type: integer
               changeRateMs:
                 description: Rate in MS to change nodes
                 type: integer
@@ -53,6 +50,9 @@ spec:
               logLevel:
                 description: Log level
                 type: string
+              maxSessionCount:
+                description: Max session count
+                type: integer
               opcuaServerLogLevel:
                 description: OPCUA server log level
                 type: string
@@ -71,9 +71,9 @@ spec:
                 type: integer
             required:
             - assetPerServer
-            - assetUpdateRatePerSecond
             - changeRateMs
             - id
+            - maxSessionCount
             - samplingIntervalMs
             - serverCount
             - tagCount

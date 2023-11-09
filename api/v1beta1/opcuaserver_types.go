@@ -30,8 +30,8 @@ type OpcuaServerSpec struct {
 	AssetPerServer int `json:"assetPerServer"`
 	// Number of tags for each server
 	TagCount int `json:"tagCount"`
-	// Asset update rate per second
-	AssetUpdateRatePerSecond int `json:"assetUpdateRatePerSecond"`
+	// Max session count
+	MaxSessionCount int `json:"maxSessionCount"`
 	// Rate in MS to change nodes
 	ChangeRateMs int `json:"changeRateMs"`
 	// Node sampling interval in MS
