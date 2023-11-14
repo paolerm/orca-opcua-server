@@ -42,6 +42,7 @@ type OpcuaServerReconciler struct {
 
 const opcuaServerFinalizer = "paermini.com/opcua-finalizer"
 const initialLBPort = 50000
+const acrSecret = "acr-secret"
 
 //+kubebuilder:rbac:groups=orca.paermini.com,resources=opcuaservers,verbs=get;list;watch;create;update;patch;delete
 //+kubebuilder:rbac:groups=orca.paermini.com,resources=opcuaservers/status,verbs=get;update;patch
@@ -139,8 +140,7 @@ func (r *OpcuaServerReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 					},
 					Spec: apiv1.PodSpec{
 						ImagePullSecrets: []apiv1.LocalObjectReference{
-							{Name: "docker-secret"},
-							{Name: "cdpx-acr-secret"},
+							{Name: acrSecret},
 						},
 						Containers: []apiv1.Container{
 							{
